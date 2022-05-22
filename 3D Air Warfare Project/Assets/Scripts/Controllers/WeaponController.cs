@@ -20,7 +20,7 @@ public class WeaponController : MonoBehaviour
 
     void Start()
     {
-        audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource = gameObject.AddComponent<AudioSource>();
         Managers.Input.KeyAction -= onKeyBoard;
         Managers.Input.KeyAction += onKeyBoard;
         fireInterval = 60.0f / gunRPM;

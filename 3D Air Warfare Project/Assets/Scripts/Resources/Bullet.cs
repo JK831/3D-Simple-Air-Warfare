@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
 
     Rigidbody rb;
 
-    Transform target;
+    public Transform target;
 
     public float turningForce;
 
@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour
     public float lifetime;
     private Vector3 direction;
 
-    public float boresightAngle;
+    public float boresightAngle = 30.0f;
 
     public void Fire(float launchSpeed, int layer)
     {
@@ -64,18 +64,12 @@ public class Bullet : MonoBehaviour
 
     void CheckLayer(Collision other)
     {
-        if (gameObject.layer != other.gameObject.layer && other.gameObject.layer == 12)
+        if (gameObject.layer != other.gameObject.layer && other.gameObject.layer != 9)
         {
-            Debug.Log("적중!");
+            Debug.Log("CheckLayer");
             other.gameObject.GetComponent<TargetObject>()?.OnDamage(damage);
-            UIController.Instance.score++;
         }
-        else if (gameObject.layer != other.gameObject.layer && other.gameObject.layer == 11)
-        {
-            Debug.Log("피격 ㅠㅠ");
-            other.gameObject.GetComponent<TargetObject>()?.OnDamage(damage);
-            UIController.Instance.score--;
-        }
+
     }
 
     void CreateHitEffect()

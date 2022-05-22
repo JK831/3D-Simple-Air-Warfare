@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,13 @@ public class UIManager : MonoBehaviour
 
     Stack<UI_Popup> _popupStack = new Stack<UI_Popup>();
     UI_Scene _sceneUI = null;
+    // _ingameUI = new InGameUI();
+
+    //public InGameUI InGameUI
+    //{
+    //    get { return _ingameUI; }
+    //    set { _ingameUI = value; }
+    //}
 
     public GameObject Root
     {
@@ -19,6 +27,8 @@ public class UIManager : MonoBehaviour
             return root;
         }
     }
+
+
 
     public void SetCanvas(GameObject go, bool sort = true) // popup이 켜질 때 이 함수를 호출함 -> manager가 저장된 _order에 따라 순서 정해줌
     {
@@ -52,6 +62,12 @@ public class UIManager : MonoBehaviour
         go.transform.SetParent(Root.transform);
 
         return sceneUI;
+    }
+
+    public void Clear()
+    {
+        _popupStack.Clear();
+        _sceneUI = null;
     }
 
     public T ShowPopupUI<T>(string name = null) where T : UI_Popup
@@ -96,5 +112,11 @@ public class UIManager : MonoBehaviour
     {
         while (_popupStack.Count > 0)
             ClosePopupUI();
+    }
+
+    public void CloseSceneUI()
+    {
+        Managers.Resource.Destroy(_sceneUI.gameObject);
+        _sceneUI = null;
     }
 }

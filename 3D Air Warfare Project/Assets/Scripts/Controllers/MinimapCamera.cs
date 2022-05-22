@@ -20,7 +20,10 @@ public class MinimapCamera : MonoBehaviour
     void Update()
     {
         if (target == null)
+        {
+            Debug.Log("Target이 null");
             return;
+        }
 
         Vector3 targetForwardVector = target.forward;
         targetForwardVector.y = 0;
@@ -35,8 +38,10 @@ public class MinimapCamera : MonoBehaviour
     public void ShowBorderIndicator(Vector3 position)
     {
         if (target == null)
+        {
+            Debug.Log("Target이 null");
             return;
-
+        }
         float reciprocal;
         float rotation;
         Vector2 distance = new Vector3(transform.position.x - position.x, transform.position.z - position.z); //오브젝트와의 거리 계산
