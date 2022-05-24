@@ -31,7 +31,6 @@ public class ObjectPool : MonoBehaviour
     }
     private void Awake()
     {
-        //Init();
         Initialize(2000);
     }
     private void Initialize(int initCount)

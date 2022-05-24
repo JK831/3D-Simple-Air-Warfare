@@ -47,7 +47,7 @@ public class TargetObject : MonoBehaviour
                 Managers.Stage.Victory = true;
                 Managers.Stage.GameOver();
             }
-            DelayedDestroy();
+            DestroyObject();
         }
     }
 
@@ -82,7 +82,7 @@ public class TargetObject : MonoBehaviour
         }
     }
 
-    void DestroyingEffect() // 폭발 이펙트 생성 후 2초 후 파괴
+    protected void DestroyingEffect() // 폭발 이펙트 생성 후 2초 후 파괴
     {
         GameObject obj = CommonDestroyFunction();
         Destroy(obj, 2.0f);

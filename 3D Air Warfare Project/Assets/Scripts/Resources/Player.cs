@@ -8,12 +8,11 @@ public class Player : TargetObject
     {
         hp -= damage;
 
-        //Managers.UI.InGameUI.hp = hp;
-
-        //Managers.UI.InGameUI.score++;  
-
+        Managers.User.PlayerScore--;
         if (hp <= 0)
         {
+            PlayerController ctr = gameObject.GetComponent<PlayerController>();
+            ctr.updateDestroied();
             DelayedDestroy();
             Managers.Stage.GameOver();
         }
@@ -23,7 +22,7 @@ public class Player : TargetObject
     public override void DestroyObject()
     {
         PlayerController ctr = gameObject.GetComponent<PlayerController>();
-        ctr.updateDie();
+        ctr.updateDestroied();
         base.DestroyObject();
     }
 
@@ -32,9 +31,11 @@ public class Player : TargetObject
         if (other.gameObject.layer == LayerMask.NameToLayer("Ground") ||
             other.gameObject.GetComponent<TargetObject>() != null)
         {
+            DestroyingEffect();
             PlayerController ctr = gameObject.GetComponent<PlayerController>();
-            ctr.updateDie();
+            ctr.updateDestroied();
             DestroyObject();
+            Managers.Stage.GameOver();
         }
     }
 }

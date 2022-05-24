@@ -15,6 +15,7 @@ public class MinimapCamera : MonoBehaviour
     {
         cam = GetComponent<Camera>();
         size = new Vector2(cam.orthographicSize, cam.orthographicSize * cam.aspect);
+        indicator = transform.Find("New Sprite");
     }
 
     void Update()

@@ -26,6 +26,11 @@ public class StageManager
 
     public void GameOver()
     {
+        Camera.main.enabled = false;
+
+        GameObject.Find("DeathCam").SetActive(true);
+        Managers.UI.CloseAllPopupUI();
+        Managers.UI.CloseSceneUI();
         Managers.UI.ShowPopupUI<Ending_UI>();
     }
 

@@ -61,14 +61,15 @@ public class PlayerController : MonoBehaviour
         speedReciprocal = 1 / maxSpeed;
 
         rotateSpeedOnDestroy *= Random.Range(0.5f, 1.0f);
+        
     }
-    public void updateDie()
+    public void updateDestroied()
     {
         _state = PlayerState.Die;
         DisableControl();
         Managers.Input.KeyAction -= OnKeyBoardPressed;
-        Camera.main.enabled = false;
-        deathCam.gameObject.SetActive(true);
+        
+        //deathCam.gameObject.SetActive(true);
         transform.position += transform.forward * Time.deltaTime * _speed;
         transform.Rotate(0, 0, rotateSpeedOnDestroy * Time.deltaTime);
         //Managers.UI.InGameUI.GameOver();

@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using Cinemachine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class GameScene : MonoBehaviour
@@ -20,8 +22,10 @@ public class GameScene : MonoBehaviour
 
         _player = Managers.Resource.Instantiate("Player");
         _player.transform.position = new Vector3(0, 400, 0);
-        
 
+        CinemachineVirtualCamera cmV = GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();
+        cmV.Follow = _player.transform;
+        cmV.LookAt = _player.transform;
 
         _enemy = Managers.Resource.Instantiate("Enemy");
         _enemy.transform.position = new Vector3(800, 400, 1800);
@@ -39,7 +43,7 @@ public class GameScene : MonoBehaviour
 
         _topDownCamera = Managers.Resource.Instantiate("Top-Down Camera");
         _topDownCamera.GetComponent<MinimapCamera>().target = _player.transform;
-        _topDownCamera.GetComponent<MinimapCamera>().indicator = _topDownCamera.transform.Find("New Sprite");
+
         enemy.transform.Find("New Sprite").GetComponent<MinimapSprite>().minimap_Camera = _topDownCamera.GetComponent<Camera>();
         enemy.transform.Find("New Sprite").GetComponent<MinimapSprite>().minimapCamera = _topDownCamera.GetComponent<MinimapCamera>();
 
