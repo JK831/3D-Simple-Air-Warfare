@@ -29,12 +29,9 @@ public class PlayerController : MonoBehaviour
 
 
 
-    public float speed
+    public float Speed
     {
-        get
-            {
-            return _speed;
-        }
+        get { return _speed; }
     }
 
     public enum PlayerState
@@ -57,23 +54,25 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        deathCam.gameObject.SetActive(false);
+
         Managers.Input.KeyAction -= OnKeyBoardPressed;
         Managers.Input.KeyAction += OnKeyBoardPressed;
  
         speedReciprocal = 1 / maxSpeed;
 
         rotateSpeedOnDestroy *= Random.Range(0.5f, 1.0f);
+        
     }
-    public void updateDie()
+    public void updateDestroied()
     {
         _state = PlayerState.Die;
         DisableControl();
         Managers.Input.KeyAction -= OnKeyBoardPressed;
-        Camera.main.enabled = false;
-        deathCam.gameObject.SetActive(true);
+        
+        //deathCam.gameObject.SetActive(true);
         transform.position += transform.forward * Time.deltaTime * _speed;
         transform.Rotate(0, 0, rotateSpeedOnDestroy * Time.deltaTime);
+        //Managers.UI.InGameUI.GameOver();
     }
 
     public void updateVictory()
@@ -111,7 +110,7 @@ public class PlayerController : MonoBehaviour
         }
             
         transform.position += transform.forward * Time.deltaTime * _speed;
-        UIController.Instance.speed = _speed;
+        //Managers.UI._sceneUI.SetSpeed(_speed);
         WeaponController weapon = gameObject.GetComponent<WeaponController>();
         weapon.UpdateAircraftSpeed(_speed);
     }

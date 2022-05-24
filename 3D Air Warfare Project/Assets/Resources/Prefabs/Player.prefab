@@ -4899,7 +4899,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 55c04ce684cb542debc357409498bc4e, type: 2}
+  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -9742,8 +9742,9 @@ GameObject:
   - component: {fileID: 2336751000511864065}
   - component: {fileID: 2885431833002108288}
   - component: {fileID: 2885431833002108290}
+  - component: {fileID: 1196403737462074139}
   - component: {fileID: 2885431833002108293}
-  - component: {fileID: 2885431833002108291}
+  - component: {fileID: 9010914079385133659}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -9780,6 +9781,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0d2923862994204ea7be12b611c2655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotateSpeedOnDestroy: 600
+  deathCam: {fileID: 0}
+  _state: 2
 --- !u!114 &2885431833002108290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9792,9 +9796,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dfd6644beabd1a489c1195aefd5bdf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShootingAudioClip: {fileID: 8300000, guid: 4310474905e266640852f43bd609a1a4, type: 3}
   gunTransform: {fileID: 2885431833192895640}
   target: {fileID: 0}
   gunRPM: 1200
+--- !u!114 &1196403737462074139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2885431833002108318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccace720f5e96f649a02894f3a17fe57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectInfo: {fileID: 11400000, guid: 9303fb793bf70be479fcf9a69a9b39d0, type: 2}
+  destroyEffect: {fileID: 1000011797152326, guid: acf39d9f4addf294d93fa56fa373961b,
+    type: 3}
+  isNextTarget: 0
 --- !u!136 &2885431833002108293
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9809,22 +9830,22 @@ CapsuleCollider:
   m_Height: 3.5
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2885431833002108291
-MonoBehaviour:
+--- !u!54 &9010914079385133659
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2885431833002108318}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ff61983d5f36584a86ccedb9c2c60ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectInfo: {fileID: 11400000, guid: 9303fb793bf70be479fcf9a69a9b39d0, type: 2}
-  destroyEffect: {fileID: 1000011797152326, guid: acf39d9f4addf294d93fa56fa373961b,
-    type: 3}
-  isNextTarget: 0
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &2885431833023257586
 GameObject:
   m_ObjectHideFlags: 0
@@ -14444,7 +14465,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 55c04ce684cb542debc357409498bc4e, type: 2}
+  - {fileID: 0}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -14500,7 +14521,6 @@ GameObject:
   - component: {fileID: 2885431833192895640}
   - component: {fileID: 2885431833192895645}
   - component: {fileID: 2885431833192895642}
-  - component: {fileID: 2885431833192895643}
   m_Layer: 11
   m_Name: AirCraft01_GunRight
   m_TagString: Untagged
@@ -14569,19 +14589,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &2885431833192895643
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2885431833192895641}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0527508c7e7ae59498ac84e84d2b0732, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  poolingObjectPrefab: {fileID: 0}
 --- !u!1 &4404586487999435494
 GameObject:
   m_ObjectHideFlags: 0
@@ -14593,9 +14600,10 @@ GameObject:
   - component: {fileID: 7325927024527534069}
   - component: {fileID: 5159308980684619801}
   - component: {fileID: 8860276621277924416}
+  - component: {fileID: 5739604995891945648}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14645,7 +14653,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 7991
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -14665,3 +14673,15 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4404586487999435494}
   m_Enabled: 1
+--- !u!114 &5739604995891945648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4404586487999435494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a46f13ae1781e349bfcb0be44438635, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

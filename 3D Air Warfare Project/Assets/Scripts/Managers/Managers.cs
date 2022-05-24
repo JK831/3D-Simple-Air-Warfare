@@ -9,7 +9,7 @@ public class Managers : MonoBehaviour
     {
         get
         {
-            init();
+            Init();
             return s_instance;
         }
     }
@@ -17,13 +17,18 @@ public class Managers : MonoBehaviour
     InputManager _input = new InputManager();
     ResourceManager _resource = new ResourceManager();
     UIManager _ui = new UIManager();
+    UserManager _user = new UserManager();
+    StageManager _stage = new StageManager();
+
     public static UIManager UI { get { return Instance._ui; } }
     public static InputManager Input { get { return Instance._input; } }
     public static ResourceManager Resource { get { return Instance._resource; } }
+    public static UserManager User { get { return Instance._user; } }
+    public static StageManager Stage { get { return Instance._stage; } }
     // Start is called before the first frame update
     void Start()
     {
-        init();
+        Init();
     }
 
     // Update is called once per frame
@@ -32,7 +37,7 @@ public class Managers : MonoBehaviour
         
         _input.OnUpdate();
     }
-    static void init()
+    static void Init()
     {
         GameObject go = GameObject.Find("@Managers");
         if (go == null)
@@ -42,5 +47,12 @@ public class Managers : MonoBehaviour
         }
         DontDestroyOnLoad(go);
         s_instance = go.GetComponent<Managers>();
+    }
+
+    static void Clear()
+    {
+        s_instance._ui.Clear();
+        s_instance._user.Clear();
+        s_instance._stage.Clear();
     }
 }

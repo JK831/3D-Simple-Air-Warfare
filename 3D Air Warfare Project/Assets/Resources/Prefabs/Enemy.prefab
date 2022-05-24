@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4300206095686290991}
   - component: {fileID: 5465602334222902771}
   - component: {fileID: 1938758428256129549}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: AirCraft02_GunPanelLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 2364291159228918715}
   - component: {fileID: 4935355538365589408}
   - component: {fileID: 1843554379394294898}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: AirCraft02_GunPanelRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 8041467963140878426}
   - component: {fileID: 4199257489343807286}
   - component: {fileID: 8743033241313971489}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: AirCraft02_Body_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 646645545401365737}
   - component: {fileID: 8618532734303052769}
   - component: {fileID: 7847414424895518694}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: AirCraft02_GunLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 74391224213715533}
   - component: {fileID: 8744268599525601941}
   - component: {fileID: 1036592795011437786}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: AirCraft02_GunRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -489,10 +489,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90b1de08e54b535458e88cc84d6418f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minimapCamera: {fileID: 927220629009848766, guid: e298b1fd6b586514db6905ff6badb9b9,
-    type: 3}
-  minimap_Camera: {fileID: 927220629009848764, guid: e298b1fd6b586514db6905ff6badb9b9,
-    type: 3}
+  minimapCamera: {fileID: 0}
+  minimap_Camera: {fileID: 0}
 --- !u!1 &4112155771370121828
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,7 +500,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4749752391355373442}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: AirCraft02_Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -534,7 +532,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1143708791310442005}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Aircraft_No2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -568,7 +566,10 @@ GameObject:
   - component: {fileID: 5378971242921991165}
   - component: {fileID: 5378971242921991163}
   - component: {fileID: 7705712164373998603}
-  m_Layer: 0
+  - component: {fileID: 7961846853806633957}
+  - component: {fileID: 8370423314640271421}
+  - component: {fileID: 6449479159469849944}
+  m_Layer: 12
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -618,6 +619,69 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed6b2cad29313234286f76e64dc06184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player: {fileID: 0}
+  maxSpeed: 80
+  minSpeed: 40
+  defaultSpeed: 40
+  initialWaypoints: []
+  newWaypointDistance: 0
+  waypointMinHeight: 700
+  waypointMaxHeight: 1700
+  areaCollider: {fileID: 0}
+  waypointObject: {fileID: 0}
+  accelerateAmount: 50
+  turningForce: 10
+  zRotateMaxThreshold: 0.5
+  zRotateAmount: 90
+  playerTrackingRate: 0.5
+--- !u!114 &7961846853806633957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5378971242921991162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96edb69f4678ff442b76098f81e4ad32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShootingAudioClip: {fileID: 8300000, guid: 06ada5590eba8d6489b36c6f3c54ff78, type: 3}
+  gunTransform: {fileID: 0}
+  target: {fileID: 0}
+  gunRPM: 600
+--- !u!114 &8370423314640271421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5378971242921991162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ff61983d5f36584a86ccedb9c2c60ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectInfo: {fileID: 11400000, guid: c79131c92c429634f9e3642ca431db07, type: 2}
+  destroyEffect: {fileID: 1000011797152326, guid: acf39d9f4addf294d93fa56fa373961b,
+    type: 3}
+  isNextTarget: 0
+--- !u!54 &6449479159469849944
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5378971242921991162}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &5378971242973660171
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,7 +693,7 @@ GameObject:
   - component: {fileID: 5378971242973660170}
   - component: {fileID: 5378971242973660172}
   - component: {fileID: 5378971242973660173}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Lines
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5237,7 +5301,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 010dd68491d1d4a1692a6d2272e5cb69, type: 2}
+  - {fileID: 0}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -5291,7 +5355,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5378971243074704122}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Effects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5328,7 +5392,7 @@ GameObject:
   - component: {fileID: 5378971243884552001}
   - component: {fileID: 5378971243884552003}
   - component: {fileID: 5378971243884552000}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10082,7 +10146,7 @@ GameObject:
   - component: {fileID: 5378971244116119851}
   - component: {fileID: 5378971244116119853}
   - component: {fileID: 5378971244116119850}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14836,7 +14900,7 @@ GameObject:
   - component: {fileID: 5612320451956067298}
   - component: {fileID: 5612320451956067308}
   - component: {fileID: 5612320451956067309}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ShootLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19500,7 +19564,7 @@ GameObject:
   - component: {fileID: 5612320452868471983}
   - component: {fileID: 5612320452868471977}
   - component: {fileID: 5612320452868471982}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ShootRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24108,7 +24172,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 55c04ce684cb542debc357409498bc4e, type: 2}
+  - {fileID: 0}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -24162,7 +24226,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1871999399878839842}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: AirCraft02_Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}

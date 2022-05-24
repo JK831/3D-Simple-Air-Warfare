@@ -5,9 +5,11 @@ using UnityEngine;
 public class TargetUI : UI_Popup
 {
     public GameObject target;
+    public GameObject _uiOnTarget;
     void Start()
     {
-        
+        target = GameObject.Find("Enemy(Clone)");
+        _uiOnTarget = gameObject.transform.Find("UIOnTarget").gameObject;
     }
 
     void Update()
@@ -17,7 +19,8 @@ public class TargetUI : UI_Popup
             gameObject.SetActive(false);
             return;
         }
-        gameObject.transform.position = Camera.main.WorldToScreenPoint(target.transform.position);
+
+        _uiOnTarget.transform.position = Camera.main.WorldToScreenPoint(target.transform.position);
         
     }
 }

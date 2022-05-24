@@ -4,13 +4,33 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    public static ObjectPool Instance;
+    public static ObjectPool s_instance;
     [SerializeField]
     private GameObject poolingObjectPrefab;
     Queue<GameObject> poolingObjectQueue = new Queue<GameObject>();
+
+    static ObjectPool Instance
+    {
+        get
+        {
+            Init();
+            return s_instance;
+        }
+    }
+
+    public static void Init()
+    {
+        GameObject go = GameObject.Find("@ObjectPool");
+        if (go == null)
+        {
+            go = new GameObject { name = "@ObjectPool" };
+            go.AddComponent<ObjectPool>();
+        }
+        //DontDestroyOnLoad(go);
+        s_instance = go.GetComponent<ObjectPool>();
+    }
     private void Awake()
     {
-        Instance = this;
         Initialize(2000);
     }
     private void Initialize(int initCount)

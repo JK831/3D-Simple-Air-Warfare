@@ -26,7 +26,7 @@ public class EnemyWeaponController : MonoBehaviour
 
     void Start()
     {
-        audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource = gameObject.AddComponent<AudioSource>();
         fireInterval = 60.0f / gunRPM;
     }
 

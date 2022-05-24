@@ -39,13 +39,14 @@ public class EnemyController : MonoBehaviour
     float waypointMinHeight;
     [SerializeField]
     float waypointMaxHeight;
-    [SerializeField]
-    BoxCollider areaCollider;
+
+
+    public BoxCollider areaCollider;
 
     Vector3 currentWaypoint;
 
-    [SerializeField]
-    GameObject waypointObject;
+
+    public GameObject waypointObject;
 
     [Header("Accel/Rotate Values")]
     [SerializeField]
@@ -305,7 +306,7 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
-        speed = targetSpeed = defaultSpeed;
+        speed = defaultSpeed;
         accelerateReciprocal = 1 / accelerateAmount;
 
         turningTime = 1 / turningForce;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Ending_UI : UI_Scene
+public class Ending_UI : UI_Popup
 {
     enum Texts
     {
@@ -30,7 +30,9 @@ public class Ending_UI : UI_Scene
 
         Bind<Text>(typeof(Texts));
         Bind<Button>(typeof(Buttons));
-
+        SetTitle("End");
+        SetScore(Managers.User.PlayerScore);
+        SetTime(Time.realtimeSinceStartup);
     }
 
     public void SetTitle(string title)

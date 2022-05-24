@@ -11,7 +11,7 @@ public class TargetObject : MonoBehaviour
     [SerializeField]
     protected GameObject destroyEffect;
 
-    protected bool isEnemy;
+
     protected int hp;
     public bool isNextTarget;
 
@@ -23,6 +23,12 @@ public class TargetObject : MonoBehaviour
         }
     }
 
+    public int HP
+    {
+        get { return hp; }
+        set { hp = value; }
+    }
+
     protected GameObject CommonDestroyFunction()
     {
         return Instantiate(destroyEffect, transform.position, Quaternion.identity);
@@ -32,11 +38,16 @@ public class TargetObject : MonoBehaviour
     public virtual void OnDamage(int damage)
     {
         hp -= damage;
-        if (gameObject.tag.Equals("Player"))
-            UIController.Instance.hp = hp;
+        Managers.User.PlayerScore += 10;
+
         if (hp <= 0)
         {
-            DelayedDestroy();
+            if (--Managers.Stage.RemainEnemy == 0)
+            {
+                Managers.Stage.Victory = true;
+                Managers.Stage.GameOver();
+            }
+            DestroyObject();
         }
     }
 
@@ -45,38 +56,24 @@ public class TargetObject : MonoBehaviour
     {
         DestroyingEffect();
         Destroy(gameObject);
-        UIController.Instance.GameOver();
-
     }
 
-    private void OnCollisionEnter(Collision other)
+    public virtual void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Ground") ||
             other.gameObject.GetComponent<TargetObject>() != null)
         {
-            PlayerController ctr = gameObject.GetComponent<PlayerController>();
-            ctr.updateDie();
             DestroyObject();
         }
     }
 
 
 
-    void DelayedDestroy()
+    protected void DelayedDestroy()
     {
         DestroyingEffect();
         Invoke("DestroyingEffect", 2.0f);
         Destroy(gameObject, 2.0f);
-        if (objectInfo.ObjectName.Equals("Player"))
-        {
-            UIController.Instance.GameOver();
-            PlayerController ctr = gameObject.GetComponent<PlayerController>();
-            ctr.updateDie();
-        }
-        else
-        {
-            UIController.Instance.GameOver();
-        }
 
         Collider[] colliders = GetComponents<Collider>();
         foreach (Collider col in colliders)
@@ -85,7 +82,7 @@ public class TargetObject : MonoBehaviour
         }
     }
 
-    void DestroyingEffect()
+    protected void DestroyingEffect() // 폭발 이펙트 생성 후 2초 후 파괴
     {
         GameObject obj = CommonDestroyFunction();
         Destroy(obj, 2.0f);
